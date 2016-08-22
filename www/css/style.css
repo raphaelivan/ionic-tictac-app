@@ -1,1 +1,19 @@
-/* Empty. Add your own CSS if you like */
+#button-new-task {
+  background: #fff;
+  color: #45b747;
+  border-radius: 50%;
+  font-size: 18px;
+  font-family: Helvetica, sans-serif;
+}
+
+.h2 {
+  font-family: Roboto, sans-serif;
+}
+
+.f-w-400 {
+  font-weight: 400;
+}
+
+form {
+  font-family: Roboto, sans-serif;
+}
