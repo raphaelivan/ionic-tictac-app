@@ -1,0 +1,15 @@
+<ion-view>
+  <ion-content class='bg-light'>
+    <div class='text-left'>
+      <a class="button button-icon text-red" href="#/">
+        <i class="icon ion-ios-arrow-left"></i>
+      </a>      
+    </div>
+
+      <onezone-datepicker ng-model='task.date' datepicker-object="onezoneDatepicker">
+        <button class="button button-block button-outline button-positive show-onezone-datepicker">
+            {{onezoneDatepicker.date | date:'dd MMMM yyyy'}} 
+        </button>
+      </onezone-datepicker>
+    </ion-content>
+  </ion-view>

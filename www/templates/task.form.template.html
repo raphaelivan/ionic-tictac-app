@@ -1,0 +1,33 @@
+<ion-modal-view>
+  <ion-header-bar class="bar bar-header bar-default">
+    <h1 class="title"> </h1>
+    <button class="button button-icon text-gray" ng-click="formTaskModal.hide()">
+      <i class="icon ion-ios-close-empty"></i>
+    </button>      
+  </ion-header-bar>
+  <ion-content class="padding">
+    <form ng-submit="createTask(task)">
+      <div class="list">
+        <label class="item item-input">
+          <input type="text" required='true' autofocus='true' placeholder="Title" ng-model="task.name">
+        </label>
+      </div>
+
+      <div class="list">
+        <label class="item item-input">
+          <textarea rows=12 placeholder="Description" ng-model="task.description"></textarea>
+        </label>
+      </div>
+
+      <onezone-datepicker ng-model='task.date' datepicker-object="onezoneDatepicker">
+        <button class="button button-block button-outline button-positive show-onezone-datepicker">
+            {{onezoneDatepicker.date | date:'dd MMMM yyyy'}} 
+        </button>
+      </onezone-datepicker>
+
+      <div class="padding">
+        <button type="submit" class="button button-block button-positive">Save Task</button>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>

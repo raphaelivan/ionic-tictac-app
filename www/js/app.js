@@ -1,4 +1,4 @@
-angular.module('TaskApp', ['ionic', 'onezone-datepicker', 'taskApp.controllers', 'taskApp.services'])
+angular.module('TaskApp', ['ionic', 'taskApp.controllers', 'taskApp.services', 'onezone-datepicker'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -14,4 +14,25 @@ angular.module('TaskApp', ['ionic', 'onezone-datepicker', 'taskApp.controllers',
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider
+    .state('tasks', {
+      url: '/',
+      templateUrl: "templates/tasks.template.html",
+      controller: 'TasksController'
+    })
+
+
+    .state('calendar', {
+      url: '/calendar',
+      templateUrl: "templates/calendar.template.html",
+      controller: 'TasksController'
+    })
+
+    .state('taskDetail', {
+      url: "/task/:id",
+      templateUrl: "templates/task.detail.template.html",
+      controller: 'TasksController'
+    });
+
+  $urlRouterProvider.otherwise('/');
 });
