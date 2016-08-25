@@ -1,0 +1,47 @@
+#button-new-task {
+  color: #fff;
+  background: #848484;
+  position: fixed;
+  right: 15px;
+  bottom: 10px;
+  z-index: 9;
+  padding: 0px 11px;
+  border-radius: 50%;
+}
+
+#button-new-taks i {
+  font-size: 29px;
+}
+
+.h2, .h1, .h3 {
+  font-family: Roboto, sans-serif;
+  color: #000000;
+}
+
+.h2{
+  font-weight: bold;
+}
+
+.f-w-400 {
+  font-weight: 400;
+}
+
+form {
+  font-family: Roboto, sans-serif;
+}
+
+.text-gray {
+  color: #f4f4f4;
+}
+
+.m-10 {
+  margin: 10px;
+}
+
+.bg-light {
+  background: #fffefb;
+}
+
+.bg-bar {
+  background: #CC7270;
+}
