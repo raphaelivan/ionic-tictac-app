@@ -1,13 +1,13 @@
 angular.module('taskApp.controllers', [])
 
-.controller('TasksController', function ($scope, $state, $ionicModal) {
+.controller('TasksController', function($scope,  $state , $ionicModal) {
   $ionicModal.fromTemplateUrl('templates/task.form.template.html', {
     scope: $scope
   }).then(function(modal) {
     $scope.formTaskModal = modal;
   });
 
-  $scope.onezoneDatepicker = {
+ $scope.onezoneDatepicker = {
     date: new Date(), // MANDATORY                     
     mondayFirst: false,                
     disablePastDays: false,
@@ -20,28 +20,32 @@ angular.module('taskApp.controllers', [])
     hideSetButton: false
   };
 
-  $scope.tasks = [
-    { name: 'name 1', date: new Date(), description: 'Foo ',  finished: true },
-    { name: 'name 2', description: 'Foo ', finished: false },
-    { name: 'name 1', date: new Date(), description: 'Foo ',  finished: true },
-    { name: 'name 2', description: 'Foo ', finished: false },
-    { name: 'name 1', date: new Date(), description: 'Foo ',  finished: true },
-    { name: 'name 3', date: new Date(), description: 'Foo ', finished: true },
-    { name: 'name 4', date: new Date(), description: 'Foo ',  finished: false }
-  ];
-
-
-  $scope.createTask = function(task) {
-    $scope.tasks.push(task);
-    clearForm(task);
-    $scope.formTaskModal.hide();
-  };
-
-  $scope.deleteTask = function (task) {
+$scope.deleteTask = function (task) {
     $scope.tasks.pop(task);
   };
   
   var clearForm = function (task) {
   }
+
+
+$scope.createTask = function(task){
+      var phraseToAdd = '';
+      if ($scope.task.name !== ""){
+      phraseToAdd = $scope.task.name;
+      } else {
+        phraseToAdd = $scope.task.name;
+      }
+      var query = "INSERT INTO sqltable (name) VALUES (?)";
+      $cordovaSQLite.execute(sqlDB, query, [phraseToAdd]).then(function(res) {
+        $scope.storedData.push({"id":res.insertId, "name":phraseToAdd});
+      }, function (err) {
+        console.error(err);
+      });
+      $scope.task.name = '';
+
+    clearForm(task);
+    $scope.formTaskModal.hide();
+    }
+
 
 });
