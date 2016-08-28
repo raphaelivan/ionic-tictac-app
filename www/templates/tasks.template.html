@@ -15,10 +15,14 @@
     </div>
 
     <h2 class='text-left m-10 h2 f-w-100'> My Board ({{tasks.length}})</h2>
-    <br>
+    
+     <a class="button button-balanced" ng-click="selectAll()">List</a>
+     <a class="button button-assertive" ng-click="deleteAll()">Delete All</a>
+
+    <br><br>
     <div class='list'>
       <div class='item item-icon-right waves-effect waves-button waves-dark' ng-repeat="task in tasks | filter: search track by $index">
-        <a href="#/task/{{task.name}}">
+        <a href="#/task/" ng-click="selecionaItem(task.name)">
           <i class='icon ion-ios-compose-outline'></i>
         </a>
         <h2 class='h2 f-w-100'>{{task.name}}</h2>
@@ -33,5 +37,3 @@
     </button>      
   </div>
 </ion-view>
-
-
