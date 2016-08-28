@@ -1,15 +1,18 @@
-angular.module('TaskApp', ['ionic', 'taskApp.controllers', 'taskApp.services', 'onezone-datepicker'])
+var example = angular.module('TaskApp', ['ionic','ngCordova', 'taskApp.controllers', 'taskApp.services', 'onezone-datepicker'])
 
-.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
-    if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-      cordova.plugins.Keyboard.disableScroll(true);
+.run(function($rootScope, $ionicPlatform, $cordovaSQLite) {
+    $ionicPlatform.ready(function() {
+        if(window.cordova && window.cordova.plugins.Keyboard) {
+            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+        }
+        
+        if(window.StatusBar) {
+            StatusBar.styleDefault();
+        }
 
-    }
-    if (window.StatusBar) {
-      StatusBar.styleDefault();
-    }
+        var db = $rootScope.db = $cordovaSQLite.openDB({ name: "my.db", location: "default" });
+
+        $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS tarefas (id integer primary key, nome text, descricao text)");
   });
 })
 
