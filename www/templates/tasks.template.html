@@ -4,18 +4,18 @@
       <br>
       <label class="item item-input">
         <i class="icon ion-search placeholder-icon"></i>
-        <input type="text" ng-model='search' placeholder="Search">          
+        <input type="text" ng-model='search' placeholder="Search">
       </label>
     </div>
 
     <div class='text-right'>
       <a class="button button-icon text-red" href="#/calendar">
         <i class="icon ion-calendar"></i>
-      </a>      
+      </a>
     </div>
 
     <h2 class='text-left m-10 h2 f-w-100'> My Board ({{tasks.length}})</h2>
-    
+
      <a class="button button-balanced" ng-click="selectAll()">List</a>
      <a class="button button-assertive" ng-click="deleteAll()">Delete All</a>
 
@@ -34,7 +34,6 @@
   <div class='text-right'>
     <button id='button-new-task' class="button button-icon" ng-click="formTaskModal.show()">
       <i class="icon ion-android-add"></i>
-    </button>      
+    </button>
   </div>
 </ion-view>
-
