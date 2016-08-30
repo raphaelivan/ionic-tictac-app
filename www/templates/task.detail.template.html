@@ -3,23 +3,27 @@
     <div class='text-left'>
       <a class="button button-icon text-red" href="#/">
         <i class="icon ion-ios-arrow-left"></i>
-      </a>      
+      </a>
     </div>
 
-    <h2 class='text-center m-10 h2 f-w-100'> <strong>Task Name</strong> </h2>
+    <div>
+       <h2 class='text-center m-10 h2 f-w-100'> <strong>{{tituloTarefa}}</strong> </h2>
+    </div>
+
     <br>
     <div class='container-fluid'>
+
       <p class='text-left m-10 h2 f-w-100'>
-        Asdasdsakdjsaljdsakldjsakljdsalk
+          {{descricaoTarefa}}
       </p>
     </div>
 
     <div class='text-center'>
       <button class="button button-icon" ng-click="checkTask(task)">
         <i class="text-success icon ion-ios-checkmark-outline"></i>
-      </button>      
+      </button>
 
-      <button class="button button-icon" ng-click="deleteTasks(task)">
+      <button class="button button-icon" ng-click="deleteTask()">
         <i class="text-danger icon ion-ios-trash"></i>
       </button>
     </div>
