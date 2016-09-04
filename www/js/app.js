@@ -9,18 +9,17 @@
               StatusBar.styleDefault();
           }
           var db = $rootScope.db = $cordovaSQLite.openDB({ name: "my.db", location: "default" });
-          $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS tarefas (id integer primary key, nome text, descricao text)");
+          $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS tarefas (id integer primary key, nome text, descricao text, data date)");
     });
   })
 
-.config(function($stateProvider, $urlRouterProvider) {
-  $stateProvider
-    .state('tasks', {
-      url: '/',
-      templateUrl: "templates/tasks.template.html",
-      controller: 'TasksController'
-    })
-
+    .config(function($stateProvider, $urlRouterProvider) {
+      $stateProvider
+        .state('tasks', {
+          url: '/',
+          templateUrl: "templates/tasks.template.html",
+          controller: 'TasksController'
+        })
 
     .state('calendar', {
       url: '/calendar',
