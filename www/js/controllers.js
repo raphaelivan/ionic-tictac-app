@@ -1,11 +1,10 @@
 angular.module('taskApp.controllers', [])
 
-.controller('TasksController', function ($scope, $state, $ionicModal, $cordovaSQLite) {
+.controller('TasksController', function ($scope, $state, $ionicModal, $cordovaSQLite, $filter) {
   $ionicModal.fromTemplateUrl('templates/task.form.template.html', {
     scope: $scope
   }).then(function(modal) {
     $scope.formTaskModal = modal;
-
   });
 
   $scope.onezoneDatepicker = {
@@ -59,7 +58,6 @@ angular.module('taskApp.controllers', [])
       };
 
       /*  Fazer update nos dados.
-
       $scope.update = function(titulo) {
         $scope.peopleList = [];
         var query = "update pessoas set nome = ? where nome = ?";
@@ -85,11 +83,11 @@ angular.module('taskApp.controllers', [])
 //Função que carrega todos os registros.
  $scope.selectAll = function(){
         $scope.tasks = [];
-        var query = "select nome, descricao from tarefas";
+        var query = "select nome, descricao, data from tarefas order by data";
         $cordovaSQLite.execute($scope.db, query, []).then(function(result) {
             if(result.rows.length > 0){
                 for(var i = 0; i < result.rows.length; i++) {
-                    $scope.tasks.push({name: result.rows.item(i).nome, description: result.rows.item(i).descricao});
+                    $scope.tasks.push({name: result.rows.item(i).nome, description: result.rows.item(i).descricao,date: result.rows.item(i).data });
                 }
             } else {
                 alert("Você não tem nenhuma tarefa :)");
@@ -121,14 +119,15 @@ angular.module('taskApp.controllers', [])
 $scope.createTask = function(task) {
       var nome=task.name;
       var descricao=task.description;
+      var data=$filter('date')($scope.onezoneDatepicker.date, 'dd/MM/yyyy')
 
-         // Faltando salvar a data e o finished!
+      //  alert($filter('date')($scope.onezoneDatepicker.date, 'dd/MM/yyyy'));
 
-       var query = "INSERT INTO tarefas (nome, descricao) VALUES (?,?)";
-        $cordovaSQLite.execute($scope.db, query, [nome, descricao]).then(function(res) {
+       var query = "INSERT INTO tarefas (nome, descricao, data) VALUES (?,?,?)";
+        $cordovaSQLite.execute($scope.db, query, [nome, descricao, data]).then(function(res) {
 
            //exibindo na lista
-           $scope.tasks.push({"id":res.insertId, "name":nome, "description":descricao});
+           $scope.tasks.push({"id":res.insertId, "name":nome, "description":descricao, "date":data});
 
         }, function (err) {
           //  console.error(err);
